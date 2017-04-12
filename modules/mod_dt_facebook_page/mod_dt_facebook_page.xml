@@ -1,0 +1,113 @@
+<?xml version='1.0' encoding="utf-8"?>
+<extension type="module" version="3.4" client="site" method="upgrade">
+	<name>DT Facebook Page</name>
+	<author>detalhar</author>
+	<creationDate>2015/7/7</creationDate>
+	<authorEmail>developer@detalharweb.com.br</authorEmail>
+	<authorURL>www.detalharweb.com.br</authorURL>
+	<copyright>Copyright (C) detalhar. All rights reserved</copyright>
+	<license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html or see LICENSE.txt</license>
+	<version>1.0.0</version>
+	<description>Joomla module to embed easily their facebook page.</description>
+	<files>
+		<filename module="mod_dt_facebook_page">mod_dt_facebook_page.php</filename>
+		<folder>language</folder>
+		<folder>tmpl</folder>
+		<filename>mod_dt_facebook_page.xml</filename>
+		<filename>index.html</filename>
+	</files>
+	<updateservers>
+		<server type="extension" priority="1" name="DT Facebook Page Update">https://github.com/detalhar/updating-extensions/blob/master/mod_dt_facebook_page_update.xml</server>
+	</updateservers>
+	<config>
+		<fields name="params">
+		<fieldset name="basic">
+			<field 
+				name="FBPageUrl"
+				type="url"
+				label="MOD_DT_FACEBOOK_PAGE_URL"
+				description="MOD_DT_FACEBOOK_PAGE_URL_DESC"
+				default="https://www.facebook.com/detalharweb"
+				/>
+			<field
+				name="appID"
+				type="text"
+				label="MOD_DT_FACEBOOK_PAGE_APPID"
+				description="MOD_DT_FACEBOOK_PAGE_APPID_DESC"
+				/>
+			<field 
+				name="width"
+				type="text"
+				label="MOD_DT_FACEBOOK_PAGE_WIDTH"
+				description="MOD_DT_FACEBOOK_PAGE_WIDTH_DESC"
+				default="340"/>
+			<field 
+				name="height"
+				type="text"
+				label="MOD_DT_FACEBOOK_PAGE_HEIGHT"
+				description="MOD_DT_FACEBOOK_PAGE_HEIGHT_DESC"/>
+				
+			<field
+				name="showFriendsFace"
+				type="radio"
+				label="MOD_DT_FACEBOOK_PAGE_SHOW_FRIENDS_FACE"
+				description="MOD_DT_FACEBOOK_PAGE_SHOW_FRIENDS_FACE_DESC"
+				default="true"
+				class="btn-group">
+				<option value="false">JNO</option>
+				<option value="true">JYES</option>
+			</field>
+			<field
+				name="smallHeader"
+				type="radio"
+				label="MOD_DT_FACEBOOK_PAGE_USE_SMALL_HEADER"
+				description="MOD_DT_FACEBOOK_PAGE_USE_SMALL_HEADER_DESC"
+				default="false"
+				class="btn-group">
+				<option value="false">JNO</option>
+				<option value="true">JYES</option>
+				
+			</field>
+			<field
+				name="hideCoverPhoto"
+				type="radio"
+				label="MOD_DT_FACEBOOK_PAGE_HIDE_COVER_PHOTO"
+				description="MOD_DT_FACEBOOK_PAGE_HIDE_COVER_PHOTO_DESC"
+				default="false"
+				class="btn-group">
+				<option value="false">JNO</option>
+				<option value="true">JYES</option>
+				
+			</field>
+			<field
+				name="showPagePosts"
+				type="radio"
+				label="MOD_DT_FACEBOOK_PAGE_SHOW_PAGE_POSTS"
+				description="MOD_DT_FACEBOOK_PAGE_SHOW_PAGE_POSTS_DESC"
+				default="false"
+				class="btn-group">
+				<option value="false">JNO</option>
+				<option value="true">JYES</option>
+				
+			</field>
+			
+		</fieldset>
+
+		<fieldset name="advanced">
+			<field
+				name="layout"
+				type="modulelayout"
+				label="JFIELD_ALT_LAYOUT_LABEL"
+				description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+				/>
+			<field
+				name="moduleclass_sfx"
+				type="textarea"
+				rows="3"
+				label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+				description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			
+		</fieldset>
+	</fields>
+	</config>
+</extension>

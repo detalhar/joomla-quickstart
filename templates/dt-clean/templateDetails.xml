@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install PUBLIC "-//Joomla! 2.5//DTD template 1.0//EN" "http://www.joomla.org/xml/dtd/2.5/template-install.dtd">
+<extension version="3.3" type="template" client="site">
+	<name>detalhar clean</name>
+	<version>1.0.1</version>
+	<creationDate>xx-xx-xxxx</creationDate>
+	<author>Your name</author>
+	<authorEmail>your.email@example.com</authorEmail>
+	<copyright>Copyright.</copyright>
+	<description>Simple starter template for Joomla 3.0</description>
+	<files>
+		<filename>component.php</filename>
+		<filename>error.php</filename>
+		<filename>favicon.ico</filename>
+		<filename>index.php</filename>
+		<filename>templateDetails.xml</filename>
+		<filename>template_preview.png</filename>
+		<filename>template_thumbnail.png</filename>
+		<folder>css</folder>
+		<folder>html</folder>
+		<folder>images</folder>
+		<folder>img</folder>
+		<folder>js</folder>
+		<folder>fonts</folder>
+	</files>
+	<positions>
+		<position>dt-menu</position>
+		<position>dt-top-a</position>
+		<position>dt-top-b</position>
+		<position>dt-top-c</position>
+		<position>dt-slideshow</position>
+		<position>dt-body-a</position>
+		<position>dt-body-b</position>
+		<position>dt-body-c</position>
+		<position>dt-body-d</position>
+		<position>dt-body-e</position>
+		<position>dt-body-f</position>
+		<position>dt-body-g</position>
+		<position>dt-body-h</position>
+		<position>dt-sidebar-a</position>
+		<position>dt-sidebar-b</position>
+		<position>dt-footer-a</position>
+		<position>dt-footer-b</position>
+		<position>dt-footer-c</position>
+		<position>dt-footer-d</position>
+		<position>debug</position>
+	</positions>
+
+	<config>
+		<fields name="params">
+			<fieldset name="advanced">
+      <field
+      name="divisorColor"
+      label="Cores"
+      type="note"
+      />
+
+      <field
+      name="colorPrimary"
+      label="Cor primária"
+      description="Esta é a cor predominante do layout"
+      type="color"
+      default="#fc0"
+      />
+      <field
+      name="colorSecundary"
+      label="Cor secundária"
+      description="Esta é a cor alternativa do layout"
+      type="color"
+      default="#f00"
+      />
+      <field
+      name="colorTerciary"
+      label="Cor terciária"
+      description="Esta é outra cor alternativa do layout"
+      type="color"
+      default="#f30"
+      />      
+
+      <field
+      name="divisorImgs"
+      label="Imagens"
+      type="note"
+      />
+
+      <field
+      name="logo"
+      label="Marca do cliente"
+      description="Escolha a marca que será exibida no site"
+      type="media"
+      />
+
+      <field
+      name="bgTop"
+      label="Background do cabeçalho"
+      description="Escolha a imagem que será exibida fundo do cabeçalho"
+      type="media"
+      />
+
+      <field
+      name="bgBodyColor"
+      label="Cor de fundo"
+      description="Escolha a cor que será exibida fundo página"
+      type="color"
+      />
+
+      <field
+      name="bgBodyImg"
+      label="Imagem de fundo"
+      description="Escolha a imagem que será exibida fundo página"
+      type="media"
+      />
+
+      <field
+      name="bgFooter"
+      label="Background do rodapé"
+      description="Escolha a imagem que será exibida fundo do rodapé"
+      type="media"
+    	/>
+
+      <field
+      name="noteGradientes"
+      label="Gradiente"
+      type="note"
+      />
+
+      <field
+      name="linearRadial"
+      type="radio"
+      label="Tipo de gradiente"
+      description="Escolha o formato de gradiente desejado"
+      default="linear"
+      class="btn-group"
+      >
+      <option value="linear">Linear</option>
+      <option value="radial">Radial</option>
+      </field>
+
+      <field
+      name="gradientColor1"
+      type="color"
+      default="#ccc"
+      label="Cor inicial"
+      />
+
+      <field
+      name="gradientColor2"
+      type="color"
+      default="#333"
+      label="Cor final"
+      />
+
+      <field
+      name="divisorIcones"
+      label="Ícones"
+      type="note"
+      />
+
+      <field
+      name="iconH3"
+      label="Ícone para títulos H3"
+      description="Escolha um ícone para ficar ao lado dos títulos H3"
+      type="media"
+      />
+
+      <field
+      name="divisorSocialPublisher"
+      label="Social Publisher"
+      type="note"
+      />
+
+      <field
+      name="fbPublisher"
+      label="Facebook Publisher"
+      description="Informe a URL completa de sua página no Facebook"
+      type="text"
+            />
+
+      <field
+      name="fbAuthor"
+      label="Facebook Autor"
+      description="Informe a URL completa de sua página no Facebook"
+      type="text"
+            />
+      
+
+    </fieldset>
+
+	</fields>
+
+
+	</config>
+
+</extension>

@@ -1,0 +1,382 @@
+@import url(../fonts/fonts.min.css);
+html {
+-ms-text-size-adjust: 100%;
+-webkit-text-size-adjust: 100%;
+}
+
+/**
+* Remove default margin.
+*/
+
+body {
+	color: #000;
+	font: normal 16px/1.5em 'roboto',sans-serif;
+	margin: 0;
+	padding: 0;
+}
+
+a, .btn, .botao, h1, h2, h3, h4 {
+  -webkit-transition: 0.6s;
+  -o-transition: 0.6s;
+  transition: 0.6s;
+}
+
+img:not(.hovereffect):not(.imgLoaded) {
+  -webkit-transition: 1s;
+  -o-transition: 1s;
+  transition: 1s;
+}
+
+.fa {font-family: 'FontAwesome'; margin: 0 3px;}
+
+/*ESTRUTURA DO SITE*/
+
+.container-wrap {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 10px;
+}
+
+
+/* ARTICLES */
+
+.article-info-term { display: none; }
+
+.article-info dd { display: inline; }
+
+/*CONTACT FORM*/
+.contact-form,
+.contact-form fieldset {
+	max-width: 800px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.contact-form input[type="text"],
+.contact-form input[type="email"] {
+	height: 30px;
+}
+.contact-form input[type="text"],
+.contact-form input[type="email"],
+.contact-form textarea {
+	width: 100%;
+	padding: 8px;
+}
+
+.form-actions {
+	border:none;
+	background: none;
+	text-align: center;
+}
+
+/* FORM LOGIN*/
+
+.login {
+	max-width: 600px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.login fieldset,
+.remember {
+	max-width: 350px;
+	margin: 0 auto;
+	padding: 0;
+}
+
+.login input[type="text"],
+.login input[type="password"] {
+	display: block;
+	margin: 0 auto;
+	padding: 8px;
+	width: 95%;
+	min-height: 30px;
+	margin-bottom: 10px;
+}
+
+.login .controls input[type="checkbox"] {
+	float: left;
+	margin: 8px 10px;
+}
+
+.form-horizontal .controls { margin-left: 0; }
+
+.login .well {
+	background: none;
+	border: none;
+}
+
+.align-left { text-align: left; }
+
+.remember ul {
+	margin: 0;
+	padding: 0;
+	display: inline;
+	list-style: none;
+}
+
+.remember ul li{
+	display: inline;
+}
+
+ul.nav.nav-tabs.nav-stacked li a {
+	font-size: 12px;
+}
+
+/*EDITOR*/
+#jform_title {
+	display: block;
+	width: 100%;
+	min-height: 40px;
+	font-size: 20px;
+	padding: 10px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+}
+
+div#b2jcontainer_c127.b2jcontainer {
+background: none;
+border: none;
+}
+
+/* Propriedades predefinidas Detalhar */
+
+.detalink {
+	position: relative;
+}
+
+.detalink-borda-br {
+	background-color: #fff;
+	padding: 4px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.detalink-borda-pr {
+	background-color: #000;
+	padding: 4px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-ms-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
+}
+
+.dt-copy p {font-size: 14px;}
+
+.cfull {width: 100%; min-width: 1170px;}
+
+.fll {float: left;}
+.flr {float: right;}
+.cb {clear: both;}
+.dinline {display: inline;}
+
+.bdrds8 {
+	-webkit-border-radius: 8px;
+	-moz-border-radius: 8px;
+	-ms-border-radius: 8px;
+	-o-border-radius: 8px;
+	border-radius: 8px;
+}
+
+.cz {background-color: #ccc;}
+.pr {background-color: #999;}
+
+.auto0, .row-fluid {max-width: 1170px; width: 100%; padding: 0;margin: 0 auto;}
+
+/*  -----------------------   */
+
+ul.nav.nav-pills {
+	margin: 0;
+}
+
+.items-row {
+	margin-bottom: 40px;
+}
+
+section .bt-cs a.prev,
+section .bt-cs a.next {
+	margin: -15px;
+}
+
+section .bt-cs .bt-inner {
+	margin: 0 16px;
+	position: relative;
+	padding: 7px 12px 15px;
+	background: #fff;
+	border-radius: 8px;	
+}
+
+section .bt-cs .bt-inner .bt-title {
+	color: #000;
+	text-transform: none;
+	margin: 5px 0 10px;
+}
+
+section .bt-cs .bt-inner .bt-introtext {
+	font-size: 13px;
+	text-align: justify;	
+}
+
+
+/* ORGANIZAR AS CLASSES CSS COM COMENTÁRIOS */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* FORMULÁRIO CENTRALZADO B2J CONTACT */
+
+.formulario-centralizado .control-group {
+	width: 60% !important;
+	float: none !important;
+	margin: 0 auto !important;
+}
+
+.formulario-centralizado .controls {
+	width: 100%;
+	text-align: center;
+	margin: 5px 0 !important;
+}
+
+.formulario-centralizado input[type="text"], 
+.formulario-centralizado .b2j_form textarea{
+	height: auto !important;
+	padding: 11px 10px !important;
+	width: 100% !important;
+	margin: 0 auto !important;
+}
+
+.formulario-centralizado .b2j_form a.chzn-single {
+	height: auto !important;
+	padding: 6px 10px !important;	
+}
+
+.formulario-centralizado .b2j_form textarea {
+	height: 120px !important;
+}
+
+.formulario-centralizado .b2j_form button {
+	background: #ff121e !important;
+	padding: 8px 35px !important;
+	text-align: center;
+	margin: 0 auto;	
+	width: 100%;
+}
+
+.formulario-centralizado .b2j_form button span {
+	background-image: none !important;
+	padding: 0 !important;
+}
+
+
+
+
+
+
+.animated { 
+    -webkit-animation-duration: 1s; 
+    animation-duration: 1s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+    -webkit-animation-timing-function: ease-in-out; 
+    animation-timing-function: ease-in-out; 
+} 
+
+@-webkit-keyframes fadeInUp { 
+    0% { 
+        opacity: 0; 
+        -webkit-transform: translateY(20px); 
+    } 
+    100% { 
+        opacity: 1; 
+        -webkit-transform: translateY(0); 
+    } 
+} 
+
+@keyframes fadeInUp { 
+    0% { 
+        opacity: 0; 
+        transform: translateY(20px); 
+    } 
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+} 
+
+.fadeInUp { 
+    -webkit-animation-name: fadeInUp; 
+    animation-name: fadeInUp; 
+}
+
+@-webkit-keyframes fadeInDown { 
+    0% { 
+        opacity: 0; 
+        -webkit-transform: translateY(-20px); 
+    } 
+    100% { 
+        opacity: 1; 
+        -webkit-transform: translateY(0); 
+    } 
+} 
+
+@keyframes fadeInDown { 
+    0% { 
+        opacity: 0; 
+        transform: translateY(-20px); 
+    } 
+    100% { 
+        opacity: 1; 
+        transform: translateY(0); 
+    } 
+} 
+
+.fadeInDown { 
+    -webkit-animation-name: fadeInDown; 
+    animation-name: fadeInDown; 
+}
+
+.animated-pulse { 
+    -webkit-animation-duration: 0.3s; 
+    animation-duration: 0.3s; 
+    -webkit-animation-fill-mode: both; 
+    animation-fill-mode: both; 
+    -webkit-animation-timing-function: ease-in; 
+    animation-timing-function: ease-in; 
+} 
+
+@-webkit-keyframes pulse { 
+    0% { -webkit-transform: scale(1); } 
+    50% { -webkit-transform: scale(1.1); } 
+    100% { -webkit-transform: scale(1); } 
+} 
+@keyframes pulse { 
+    0% { transform: scale(1); } 
+    50% { transform: scale(1.1); } 
+    100% { transform: scale(1); } 
+} 
+
+/* Chrono Forms*/
+.chronoform  input[type="text"]{
+	width: 400px !important;
+}
+.chrono_credits {
+	display: none;
+}

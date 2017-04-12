@@ -1,0 +1,51 @@
+----------------------------------------
+Logo DETALHAR no rodapé
+----------------------------------------
+
+Logomarca toda branca
+
+<div class="detalink">
+	<a href="http://www.detalharweb.com.br" target="_blank">
+		<img src="templates/dt-clean/img/logo-deta-br01.png" alt="Este site foi desenvolvido por DETALHAR Agência Digital" title="Desenvolvido por DETALHAR">
+	</a>
+</div>
+
+Logomarca toda cinza
+
+<div class="detalink">
+	<a href="http://www.detalharweb.com.br" target="_blank">
+		<img src="templates/dt-clean/img/logo-deta-cz01.png" alt="Este site foi desenvolvido por DETALHAR Agência Digital" title="Desenvolvido por DETALHAR">
+	</a>
+</div>
+
+Logomarca colorida
+
+<div class="detalink">
+	<a href="http://www.detalharweb.com.br" target="_blank">
+		<img src="templates/dt-clean/img/logo-deta-cor01.png" alt="Este site foi desenvolvido por DETALHAR Agência Digital" title="Desenvolvido por DETALHAR">
+	</a>
+</div>
+
+LOGO DO CLIENTE no topo
+
+<a href="<?php echo $this->baseurl; ?>">
+	<img src="<?php echo $this->baseurl; ?>/templates/dt-clean/img/logo-CLIENTE.png">
+</a>
+
+
+POSIÇÃO PARA MÓDULO
+
+<?php if ($this->countModules('dtm-XYZ')) : ?>
+<section class="dtm-XYZ">
+		<div class="row-fluid">
+			<div class="span12">
+				<jdoc:include type="modules" name="dtm-XYZ" style="none" />
+			</div>
+		</div>
+</section>
+<?php endif; ?>
+
+COMPONENTE
+
+<jdoc:include type="message" />
+<jdoc:include type="component" />

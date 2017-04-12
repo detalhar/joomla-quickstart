@@ -1,0 +1,78 @@
+<?xml version='1.0' encoding="utf-8"?>
+<extension type="module" version="3.4" client="site" method="upgrade">
+	<name>DT Simple Youtube Embed</name>
+	<author>Detalhar</author>
+	<creationDate>2015/7/1</creationDate>
+	<authorEmail>developer@detalharweb.com.br</authorEmail>
+	<authorURL>http://detalharweb.com.br</authorURL>
+	<copyright>Copyright (C) Detalhar. All rights reserved</copyright>
+	<license>GNU/GPLv3 http://www.gnu.org/licenses/gpl-3.0.html or see LICENSE.txt</license>
+	<version>1.0.0</version>
+	<description>MOD_DT_YOUTUBE_DESC</description>
+	<files>
+		<filename module="mod_dt_youtube_embed">mod_dt_youtube_embed.php</filename>
+		<folder>language</folder>
+		<folder>tmpl</folder>
+		<filename>mod_dt_youtube_embed.xml</filename>
+		<filename>index.html</filename>
+	</files>
+	
+	<config>
+		<fields name="params">
+		<fieldset name="basic">
+			<field 
+				name="youtube_id"
+				type="text"
+				label="MOD_DT_YOUTUBE_ID"
+				description="MOD_DT_YOUTUBE_ID_DESC"
+				/>
+				<field 
+				name="width"
+				type="text"
+				label="MOD_DT_YOUTUBE_WIDHT"
+				description="MOD_DT_YOUTUBE_WIDHT_DESC"
+				default="300"
+				/>
+				<field 
+				name="height"
+				type="text"
+				label="MOD_DT_YOUTUBE_HEIGHT"
+				description="MOD_DT_YOUTUBE_HEIGHT_DESC"
+				default="200"
+				/>
+				<field 
+					name="myspacer"
+					type="spacer"
+					hr="true"
+					/>
+				<field
+					name="autoplay"
+					type="radio"
+					label="MOD_DT_YOUTUBE_AUTOPLAY"
+					description="MOD_DT_YOUTUBE_AUTOPLAY_DESC"
+					default="0"
+					class="btn-group"
+					>
+					<option value="0">JNO</option>
+					<option value="1">JYES</option>
+				</field>
+		</fieldset>
+
+		<fieldset name="advanced">
+			<field
+				name="layout"
+				type="modulelayout"
+				label="JFIELD_ALT_LAYOUT_LABEL"
+				description="JFIELD_ALT_MODULE_LAYOUT_DESC" />
+				/>
+			<field
+				name="moduleclass_sfx"
+				type="textarea"
+				rows="3"
+				label="COM_MODULES_FIELD_MODULECLASS_SFX_LABEL"
+				description="COM_MODULES_FIELD_MODULECLASS_SFX_DESC" />
+			
+		</fieldset>
+	</fields>
+	</config>
+</extension>
