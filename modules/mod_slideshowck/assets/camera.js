@@ -1,7 +1,11 @@
-// Camera slideshow v1.3.13 - a jQuery slideshow with many effects, transitions, easy to customize, using canvas and mobile ready, based on jQuery 1.4+
+// Camera slideshow v1.4.1 - a jQuery slideshow with many effects, transitions, easy to customize, using canvas and mobile ready, based on jQuery 1.4+
 // Copyright (c) 2012 by Manuel Masia - www.pixedelic.com
 // Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 
+// v1.4.3	- 23/06/17 : remove the time stamp in image url (again)
+// v1.4.2	- 03/05/17 : add the alt tag on images
+// v1.4.1	- 22/02/17 : improve the load as container background feature to work in the same way as full page background
+// v1.4.0	- 16/02/17 : separate the slideshow instance from the jQuery instance. Load it as object and not as jquery plugin
 // v1.3.18 - 22/11/16 : add the event cameraupdate
 // v1.3.17 - 08/11/16 : improve the transition in full page background mode
 // v1.3.16 - 06/10/16 : remove the time stamp in image url
@@ -17,7 +21,10 @@
 // v1.3.6 : added lightbox support
 // v1.3.5 : update for jQuery1.9
 // from cedric keiflin alias ced1870
-;(function($){$.fn.camera = function(opts, callback) {
+;(function($){
+
+var Slideshowck = function (container, opts, callback) {
+// $.fn.camera = function(opts, callback) {
 
 	var defaults = {
 		alignment			: 'center', //topLeft, topCenter, topRight, centerLeft, center, centerRight, bottomLeft, bottomCenter, bottomRight
@@ -139,7 +146,7 @@
 
 	var opts = $.extend({}, defaults, opts);
 
-	var wrap = $(this).addClass('camera_wrap');
+	var wrap = $(container).addClass('camera_wrap');
 
 		if (opts.fullpage == true) {
 			$(document.body).css('background','none').prepend(wrap);
@@ -402,9 +409,14 @@
 		}
 
 	}
+	var allAltText = new Array();
 	$('.camera_caption',wrap).each(function(){
 		var ind = $(this).parent().index(),
 			cont = wrap.find('.cameraContent').eq(ind);
+		var title = $(this).find('.camera_caption_title').text().trim();
+		var desc = $(this).find('.camera_caption_desc').text().trim();
+		var altText = title.length ? title : (desc ? desc : allImg[ind]);
+		allAltText.push(altText);
 		$(this).appendTo(cont);
 	});
 
@@ -545,7 +557,13 @@
 		}
 		if (opts.fullpage == true) {
 			h = $(window).height();
+			wrap.css({height:h});
 		}
+		else if (opts.container != false) {
+			h = $(opts.container).height();
+			
+	}
+		wrap.css({height:h});
 	}
 
 	function resizeImage(){
@@ -607,7 +625,37 @@
 								'top' : 0,
 								'width' : imgW
 							});
-						} else if(portrait==false||portrait=='false'){
+						} 
+						else if (opts.container != false) {
+							var imgRatio = hT/wT;
+							var winH = $(opts.container).height();
+							var winW = $(opts.container).width();
+							var windowRatio = winH/winW;
+							mTop = 0;
+							if (windowRatio > imgRatio) {
+								imgH = winH;
+								imgW = imgH / imgRatio;
+								mLeft = Math.abs((winW - imgW) / 2);
+								mTop = 0;
+							} else {
+								imgW = winW;
+								imgH = imgW * imgRatio;
+								mLeft = 0;
+								mTop = 0;
+							}
+							t.css({
+								'height' : imgH,
+								'margin-left' : -mLeft,
+								'margin-right' : -mLeft,
+								'margin-top' : mTop,
+								'position' : 'absolute',
+								'visibility' : 'visible',
+								'left' : 0,
+								'top' : 0,
+								'width' : imgW
+							});
+						}
+						else if(portrait==false||portrait=='false'){
 							if((wT/hT)<(w/h)) {
 								var r = w / wT;
 								var d = (Math.abs(h - (hT*r)))*0.5;
@@ -1325,6 +1373,7 @@
 					$(imgLoaded).attr('data-alignment',allAlign[slideI]).attr('data-portrait',allPor[slideI]);
 					$(imgLoaded).attr('width',wT);
 					$(imgLoaded).attr('height',hT);
+					$(imgLoaded).attr('alt',allAltText[slideI]);
 					target.find('.cameraSlide_'+slideI).css('visibility','visible');
 					resizeImage();
 					nextSlide(slideI+1);
@@ -1342,7 +1391,7 @@
 			if( allImg.length > (slideI+1) && !$('.imgLoaded',slideNext).length ){
 				var imgUrl2 = allImg[(slideI+1)];
 				var imgLoaded2 = new Image();
-				imgLoaded2.src = imgUrl2 +"?"+ new Date().getTime();
+				imgLoaded2.src = imgUrl2;
 				slideNext.prepend($(imgLoaded2).attr('class','imgLoaded').css('visibility','hidden'));
 				imgLoaded2.onload = function() {
 					wT = imgLoaded2.naturalWidth;
@@ -1350,6 +1399,7 @@
 					$(imgLoaded2).attr('data-alignment',allAlign[slideI+1]).attr('data-portrait',allPor[slideI+1]);
 					$(imgLoaded2).attr('width',wT);
 					$(imgLoaded2).attr('height',hT);
+					$(imgLoaded2).attr('alt',allAltText[slideI+1]);
 					resizeImage();
 				};
 			}
@@ -2664,6 +2714,7 @@
 
 }
 
+window.Slideshowck = Slideshowck;
 })(jQuery);
 
 ;(function($){$.fn.cameraStop = function() {

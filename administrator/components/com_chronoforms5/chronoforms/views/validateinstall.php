@@ -44,6 +44,12 @@ defined("GCORE_SITE") or die;
 				), 'sublabel' => 'Your subscription type')); ?>
 				<?php //echo $this->Html->formLine('instantcode', array('type' => 'text', 'label' => 'Instant Code', 'class' => 'XXL', 'sublabel' => 'In some situations you may need to provide the instant code, you do not need to enter this code unless you had instructions to do so.')); ?>
 				<?php echo $this->Html->formLine('serial_number', array('type' => 'text', 'label' => 'Serial number', 'class' => 'XXL', 'sublabel' => 'In most cases you will not need to use this field.')); ?>
+				
+				<?php if(!empty($extra_info)): ?>
+				<?php echo $this->Html->formLine('sale_number', array('type' => 'text', 'label' => 'Sale number', 'class' => 'L', 'sublabel' => 'Please enter your sale# (Order number) received by email.')); ?>
+				<?php echo $this->Html->formLine('sort_number', array('type' => 'text', 'label' => 'Sort number', 'class' => 'L', 'sublabel' => 'Please enter the sort number')); ?>
+				<?php endif; ?>
+				
 				<?php echo $this->Html->formSecEnd(); ?>
 				<?php echo $this->Html->formEnd(); ?>
 			</form>

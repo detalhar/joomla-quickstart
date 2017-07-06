@@ -791,7 +791,21 @@ class Chronoforms extends \GCore\Libs\GController {
 			foreach($this->data as $key => $value){
 				$fields .= "$key=".urlencode($value)."&";
 			}
-
+			
+			if(!empty($this->data['sale_number']) AND !empty($this->data['sort_number'])){
+				$sale = trim($this->data['sale_number']);
+				$sort = trim($this->data['sort_number']);
+				$sale_count = strlen($sale);
+				if($sort == (str_repeat(1, $sale_count) + $sale)){
+					parent::_settings('chronoforms');
+					$this->data['Chronoforms'][$update_fld] = 1;
+					$result = parent::_save_settings('chronoforms');
+					
+					$session->setFlash('success', 'Validated successfully.');
+					$this->redirect(r_('index.php?ext=chronoforms'));
+				}
+			}
+			
 			$target_url = 'http://www.chronoengine.com/index.php?option=com_chronocontact&task=extra&chronoformname=validateLicense';
 			$output = '-';
 			if(ini_get('allow_url_fopen')){
@@ -863,14 +877,15 @@ class Chronoforms extends \GCore\Libs\GController {
 								$session->setFlash('success', 'Validated successfully.');
 								$this->redirect(r_('index.php?ext=chronoforms'));
 							}else{
-								$session->setFlash('error', 'Validation error.');
+								$session->setFlash('error', 'Validation error, please fill the form below or contact us on www.chronoengine.com');
 							}
 						}else{
-							$session->setFlash('error', 'Serial number invalid!');
+							$session->setFlash('error', 'Serial number invalid, please fill the form below or contact us on www.chronoengine.com');
 						}
 					}
-					$session->setFlash('error', 'Validation error, please try again using the Instant Code, or please contact us on www.chronoengine.com');
-					$this->redirect(r_('index.php?ext=chronoforms'));
+					$session->setFlash('error', 'Validation error, please fill the form below or contact us on www.chronoengine.com');
+					//$this->redirect(r_('index.php?ext=chronoforms'));
+					$this->set('extra_info', true);
 				}
 			}
 		}

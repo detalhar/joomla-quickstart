@@ -11,7 +11,7 @@
 	<license>GNU/GPL 3 http://www.gnu.org/licenses/gpl.html</license>
 	<authorEmail>ced1870@gmail.com</authorEmail>
 	<authorUrl>http://www.joomlack.fr</authorUrl>
-	<version>1.4.40</version>
+	<version>1.4.44</version>
 	<description>MOD_SLIDESHOWCK_XML_DESCRIPTION</description>
 	<files>
 		<filename module="mod_slideshowck">mod_slideshowck.php</filename>
@@ -462,6 +462,17 @@
 					<option value="lightbox">MOD_SLIDESHOWCK_LIGHTBOX</option>
 				</field>
 				<field
+					name="linkposition"
+					type="cklist"
+					label="MOD_SLIDESHOWCK_LINK_POSITION_LABEL"
+					description="MOD_SLIDESHOWCK_LINK_POSITION_DESC"
+					icon="link.png"
+					default="fullslide"
+					>
+					<option value="fullslide">MOD_SLIDESHOWCK_LINK_FULLSLIDE</option>
+					<option value="title">MOD_SLIDESHOWCK_LINK_TITLE</option>
+				</field>
+				<field
 					name="container"
 					type="cktext"
 					default=""
@@ -549,6 +560,18 @@
 					<option value="0">JNO</option>
 				</field>
 
+				<field
+					name="fixhtml"
+					type="ckradio"
+					default="0"
+					label="MOD_SLIDESHOWCK_FIXHTML_LABEL"
+					description="MOD_SLIDESHOWCK_FIXHTML_DESC"
+					icon="bug_delete.png"
+					class="btn-group"
+				>
+					<option value="1">JYES</option>
+					<option value="0">JNO</option>
+				</field>
 				<field
 					name="layout"
 					type="ckmodulelayout"

@@ -1,33 +1,31 @@
 <?php
 
 /**
- * @package   	JCE
- * @copyright 	Copyright (c) 2009-2016 Ryan Demmer. All rights reserved.
- * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved.
+ * @copyright 	Copyright (c) 2009-2017 Ryan Demmer. All rights reserved
+ * @copyright   Copyright (C) 2005 - 2012 Open Source Matters, Inc. All rights reserved
  * @license   	GNU/GPL 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * JCE is free software. This version may have been modified pursuant
  * to the GNU General Public License, and as distributed it includes or
  * is derivative of works licensed under the GNU General Public License or
- * other free or open source software licenses.
+ * other free or open source software licenses
  */
 defined('JPATH_BASE') or die('RESTRICTED');
 
 /**
- * Renders a text element
- *
- * @package 	JCE
+ * Renders a text element.
  */
-class WFElementText extends WFElement {
-
-    /**
+class WFElementText extends WFElement
+{
+    /*
      * Element name
      *
      * @access	protected
      * @var		string
      */
-    var $_name = 'Text';
+    public $_name = 'Text';
 
-    function fetchElement($name, $value, &$node, $control_name) {
+    public function fetchElement($name, $value, &$node, $control_name)
+    {
         $attributes = array();
 
         foreach ($node->attributes() as $k => $v) {
@@ -49,11 +47,16 @@ class WFElementText extends WFElement {
 
         $attributes['class'] = ($class ? $class : '');
 
-        $control = $control_name . '[' . $name . ']';
+        $control = $control_name.'['.$name.']';
 
-        $attributes['type']   = 'text';
-        $attributes['name']   = $control;
-        $attributes['id']     = preg_replace('#[^a-z0-9_-]#i', '', $control_name . $name);
+        // create array id repeatable
+        if ((string) $node->attributes()->repeatable) {
+            $control .= '[]';
+        }
+
+        $attributes['type'] = strtolower($this->_name);
+        $attributes['name'] = $control;
+        $attributes['id'] = preg_replace('#\W+#', '_', $control_name.$name);
 
         // pattern data attribute for editable select input box
         if ((string) $node->attributes()->parent) {
@@ -61,8 +64,8 @@ class WFElementText extends WFElement {
 
             $items = array();
 
-            foreach(explode(';', (string) $node->attributes()->parent) as $item) {
-                $items[] = $prefix . $item;
+            foreach (explode(';', (string) $node->attributes()->parent) as $item) {
+                $items[] = $prefix.$item;
             }
 
             $attributes['data-parent'] = implode(';', $items);
@@ -80,47 +83,48 @@ class WFElementText extends WFElement {
             $html .= '<div class="input-append">';
         }
 
-        foreach($values as $value) {
-          $attributes['value'] = $value;
+        foreach ($values as $value) {
+            $attributes['value'] = $value;
 
-          if ((string) $node->attributes()->repeatable) {
-              $control  .= '[]';
-              $html     .= '<div class="ui-repeatable form-inline"><div class="input-append">';
-          }
+            if ((string) $node->attributes()->repeatable) {
+                $html .= '<div class="ui-repeatable form-inline"><div class="input-append">';
+            }
 
-          $html .= '<input';
+            $html .= '<input';
 
-          foreach ($attributes as $k => $v) {
-              if (!in_array($k, array('default', 'label', 'description'))) {
-                  $html .= ' ' . $k . ' = "' . $v . '"';
-              }
-          }
+            foreach ($attributes as $k => $v) {
+                if (!in_array($k, array('default', 'label', 'description'))) {
+                    $html .= ' '.$k.' = "'.$v.'"';
+                }
+            }
 
-          $html .= ' />';
+            $html .= ' />';
 
-          if ((string) $node->attributes()->repeatable) {
-              $html .= '<button type="button" class="btn btn-link ui-repeatable-create"><i class="icon-plus"></i></button>';
-              $html .= '<button type="button" class="btn btn-link ui-repeatable-delete"><i class="icon-trash"></i></button>';
-              $html .= '</div></div>';
-          }
+            if ((string) $node->attributes()->repeatable) {
+                $html .= '<button type="button" class="btn btn-link ui-repeatable-create"><i class="icon-plus"></i></button>';
+                $html .= '<button type="button" class="btn btn-link ui-repeatable-delete"><i class="icon-trash"></i></button>';
+                $html .= '</div></div>';
+            }
 
-          if (strpos($name, 'max_size') !== false) {
-              $html .= $this->uploadSize();
-          }
+            if (strpos($name, 'max_size') !== false) {
+                $html .= $this->uploadSize();
+            }
 
-          if (strpos($class, 'color') !== false) {
-              $html .= '</div>';
-          }
+            if (strpos($class, 'color') !== false) {
+                $html .= '</div>';
+            }
         }
 
         return $html;
     }
 
-    function uploadSize() {
-        return '<span class="help-block help-block-inline">' . WFText::_('WF_SERVER_UPLOAD_SIZE') . ' : ' . $this->getUploadValue() . '</span>';
+    public function uploadSize()
+    {
+        return '<span class="help-block help-block-inline">'.WFText::_('WF_SERVER_UPLOAD_SIZE').' : '.$this->getUploadValue().'</span>';
     }
 
-    function getUploadValue() {
+    public function getUploadValue()
+    {
         $upload = trim(ini_get('upload_max_filesize'));
         $post = trim(ini_get('post_max_size'));
 
@@ -138,19 +142,24 @@ class WFElementText extends WFElement {
         return $post;
     }
 
-    function convertValue($value) {
-        $unit = 'KB';
+    public function convertValue($value)
+    {
+        $unit   = 'KB';
+        $prefix = '';
 
-        // GB
-        if ($value > 1073741824)
-            $unit = 'GB';
+        preg_match('#([0-9]+)\s?([a-z]*)#i', $value, $matches);
 
-        // MB
-        if ($value > 1048576)
-            $unit = 'MB';
+        // get unit
+        if (isset($matches[2])) {
+            $prefix = $matches[2];
+        }
+        // get value
+        if (isset($matches[1])) {
+            $value = (int) $matches[1];
+        }
 
         // Convert to bytes
-        switch (strtolower($value{strlen($value) - 1})) {
+        switch (strtolower($prefix)) {
             case 'g':
                 $value *= 1073741824;
                 break;
@@ -161,20 +170,23 @@ class WFElementText extends WFElement {
                 $value *= 1024;
                 break;
         }
+
         // Convert to unit value
-        switch (strtolower($unit{0})) {
+        switch (strtolower($unit)) {
             case 'g':
+            case 'gb':
                 $value /= 1073741824;
                 break;
             case 'm':
+            case 'mb':
                 $value /= 1048576;
                 break;
             case 'k':
+            case 'kb':
                 $value /= 1024;
                 break;
         }
-        return preg_replace('/[^0-9]/', '', $value) . ' ' . $unit;
+
+        return (int) $value.' KB';
     }
 }
-
-?>

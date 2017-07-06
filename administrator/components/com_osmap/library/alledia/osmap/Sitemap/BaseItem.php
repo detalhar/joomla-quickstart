@@ -68,7 +68,17 @@ class BaseItem extends \JObject
     /**
      * @var string
      */
+    public $created;
+
+    /**
+     * @var string
+     */
     public $modified;
+
+    /**
+     * @var string
+     */
+    public $publishUp;
 
     /**
      * The component associated to the option URL param
@@ -206,13 +216,16 @@ class BaseItem extends \JObject
     /**
      * The constructor
      *
-     * @param object  $itemData
+     * @param array $itemData
      *
      * @return void
      */
-    public function __construct(&$itemData, $currentMenuItemId)
+    public function __construct(&$itemData)
     {
         $this->setProperties($itemData);
+        if (class_exists('\\Alledia\\OSMap\\Sitemap\\ItemAdapter\\GenericPro')) {
+            $this->adapterName = 'GenericPro';
+        }
     }
 
     /**
@@ -268,7 +281,9 @@ class BaseItem extends \JObject
      */
     protected function checkLinkIsInternal()
     {
-        return OSMap\Router::isInternalURL($this->link)
+        $container = OSMap\Factory::getContainer();
+
+        return $container->router->isInternalURL($this->link)
             || in_array(
                 $this->type,
                 array(

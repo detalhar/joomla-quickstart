@@ -29,7 +29,7 @@ class Item extends BaseItem
      */
     public function __construct(&$itemData, $currentMenuItemId)
     {
-        $this->setProperties($itemData);
+        parent::__construct($itemData);
 
         $this->published  = (bool)$this->published;
         $this->isMenuItem = (bool)$this->isMenuItem;
@@ -40,7 +40,12 @@ class Item extends BaseItem
         // Check if the link is an internal link
         $this->isInternal = $this->checkLinkIsInternal();
 
-        $this->setModificationDate();
+        $this->prepareDate('created');
+        $this->prepareDate('modified');
+
+        $defaultDate = is_null($this->created) ? $this->modified : $this->created;
+        $this->prepareDate('publishUp', $defaultDate);
+
         $this->setLink();
         $this->extractComponentFromLink();
         $this->setFullLink();
@@ -53,7 +58,8 @@ class Item extends BaseItem
         $this->rawLink = $this->fullLink;
 
         // Removes the hash segment from the Full link, if exists
-        $this->fullLink = OSMap\Router::removeHashFromURL($this->fullLink);
+        $container = OSMap\Factory::getContainer();
+        $this->fullLink = $container->router->removeHashFromURL($this->fullLink);
 
         // Make sure to have a unique hash for the settings
         $this->settingsHash = md5($this->fullLink . $currentMenuItemId);
@@ -118,7 +124,9 @@ class Item extends BaseItem
      */
     protected function checkLinkIsInternal()
     {
-        return OSMap\Router::isInternalURL($this->link)
+        $container = OSMap\Factory::getContainer();
+
+        return $container->router->isInternalURL($this->link)
             || in_array(
                 $this->type,
                 array(
@@ -129,29 +137,38 @@ class Item extends BaseItem
     }
 
     /**
-     * Set the correct modification date.
+     * Set the correct date for the attribute
+     *
+     * @param string $attributeName
+     * @param string $default
      *
      * @return void
      */
-    public function setModificationDate()
+    public function prepareDate($attributeName, $default = null)
     {
-        if (OSMap\Helper\General::isEmptyDate($this->modified)) {
-            $this->modified = null;
+        if (!is_null($default)) {
+            if (empty($this->$attributeName)) {
+                $this->$attributeName = $default;
+            }
         }
 
-        if (!OSMap\Helper\General::isEmptyDate($this->modified)) {
-            if (!is_numeric($this->modified)) {
-                $date           = new \JDate($this->modified);
-                $this->modified = $date->toUnix();
+        if (OSMap\Helper\General::isEmptyDate($this->$attributeName)) {
+            $this->$attributeName = null;
+        }
+
+        if (!OSMap\Helper\General::isEmptyDate($this->$attributeName)) {
+            if (!is_numeric($this->$attributeName)) {
+                $date           = new \JDate($this->$attributeName);
+                $this->$attributeName = $date->toUnix();
             }
 
             // Convert dates from UTC
-            if (intval($this->modified)) {
-                if ($this->modified < 0) {
-                    $this->modified = null;
+            if (intval($this->$attributeName)) {
+                if ($this->$attributeName < 0) {
+                    $this->$attributeName = null;
                 } else {
-                    $date           = new \JDate($this->modified);
-                    $this->modified = $date->toISO8601();
+                    $date           = new \JDate($this->$attributeName);
+                    $this->$attributeName = $date->toISO8601();
                 }
             }
         }
@@ -222,7 +239,9 @@ class Item extends BaseItem
      */
     protected function sanitizeFullLink()
     {
-        $this->fullLink = OSMap\Router::sanitizeURL($this->fullLink);
+        $container = OSMap\Factory::getContainer();
+
+        $this->fullLink = $container->router->sanitizeURL($this->fullLink);
     }
 
     /**
@@ -235,9 +254,11 @@ class Item extends BaseItem
      */
     protected function setFullLink()
     {
+        $container = OSMap\Factory::getContainer();
+
         if ((bool)$this->home) {
             // Correct the URL for the home page.
-            $this->fullLink = OSMap\Router::getFrontendBase();
+            $this->fullLink = $container->router->getFrontendBase();
 
             // Check if multi-language is enabled to use the proper route
             if (\JLanguageMultilang::isEnabled()) {
@@ -258,13 +279,13 @@ class Item extends BaseItem
                 }
                 $homes = array();
 
-                $this->fullLink .= OSMap\Router::routeURL('index.php?Itemid=' . $home->id);
+                $this->fullLink .= $container->router->routeURL('index.php?Itemid=' . $home->id);
                 $home = null;
             }
 
             // Removes the /administrator from the URI if in the administrator
-            $this->fullLink = OSMap\Router::sanitizeURL(
-                OSMap\Router::forceFrontendURL($this->fullLink)
+            $this->fullLink = $container->router->sanitizeURL(
+                $container->router->forceFrontendURL($this->fullLink)
             );
 
             return;
@@ -292,9 +313,9 @@ class Item extends BaseItem
             }
 
             // Check if it is a relative URI
-            if (OSMap\Router::isRelativeUri($this->link)) {
-                $this->fullLink = OSMap\Router::sanitizeURL(
-                    OSMap\Router::convertRelativeUriToFullUri($this->link)
+            if ($container->router->isRelativeUri($this->link)) {
+                $this->fullLink = $container->router->sanitizeURL(
+                    $container->router->convertRelativeUriToFullUri($this->link)
                 );
 
                 return;
@@ -328,13 +349,13 @@ class Item extends BaseItem
 
         if ($this->isInternal) {
             // Route the full link
-            $this->fullLink = OSMap\Router::routeURL($this->fullLink);
+            $this->fullLink = $container->router->routeURL($this->fullLink);
 
             // Make sure the link has the base uri
-            $this->fullLink = OSMap\Router::forceFrontendURL($this->fullLink);
+            $this->fullLink = $container->router->forceFrontendURL($this->fullLink);
         }
 
-        $this->fullLink = OSMap\Router::sanitizeURL($this->fullLink);
+        $this->fullLink = $container->router->sanitizeURL($this->fullLink);
     }
 
     /**

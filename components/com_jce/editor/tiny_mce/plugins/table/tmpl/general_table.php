@@ -1,13 +1,12 @@
 <?php
 
 /**
- * @package    JCE
- * @copyright    Copyright (c) 2009-2016 Ryan Demmer. All rights reserved.
+ * @copyright    Copyright (c) 2009-2017 Ryan Demmer. All rights reserved
  * @license    GNU/GPL 2 or later - http://www.gnu.org/licenses/old-licenses/gpl-2.0.html
  * JCE is free software. This version may have been modified pursuant
  * to the GNU General Public License, and as distributed it includes or
  * is derivative of works licensed under the GNU General Public License or
- * other free or open source software licenses.
+ * other free or open source software licenses
  */
 defined('_JEXEC') or die('RESTRICTED');
 ?>
@@ -43,32 +42,30 @@ defined('_JEXEC') or die('RESTRICTED');
         <?php echo WFText::_('WF_TABLE_ALIGN'); ?></label>
     <div class="uk-form-controls uk-width-3-10">
         <select id="align">
-            <option value="">{#not_set}</option>
+            <option value=""><?php echo WFText::_('WF_OPTION_NOT_SET'); ?></option>
             <option value="center"><?php echo WFText::_('WF_TABLE_ALIGN_MIDDLE'); ?></option>
             <option value="left"><?php echo WFText::_('WF_TABLE_ALIGN_LEFT'); ?></option>
             <option value="right"><?php echo WFText::_('WF_TABLE_ALIGN_RIGHT'); ?></option>
         </select>
     </div>
 
-    <label class="uk-form-label uk-width-2-10" for="border">
+    <label class="uk-form-label uk-width-2-10" for="table_border">
         <?php echo WFText::_('WF_TABLE_BORDER'); ?></label>
     <div class="uk-form-controls uk-width-3-10">
-        <input id="border" type="number" value="" onchange="TableDialog.changedBorder();" />
+        <input id="table_border" type="number" value="" />
     </div>
 </div>
 <div class="uk-grid">
     <label class="uk-form-label uk-width-2-10" for="width">
         <?php echo WFText::_('WF_TABLE_WIDTH'); ?></label>
     <div class="uk-form-controls uk-width-3-10">
-        <input type="text" id="width" value=""
-               onchange="TableDialog.changedSize();" />
+        <input type="text" id="width" value="" />
     </div>
 
     <label class="uk-form-label uk-width-2-10" for="height">
         <?php echo WFText::_('WF_TABLE_HEIGHT'); ?></label>
     <div class="uk-form-controls uk-width-3-10">
-        <input type="text" id="height" value=""
-               onchange="TableDialog.changedSize();" />
+        <input type="text" id="height" value="" />
     </div>
 </div>
 <div class="uk-form-row">

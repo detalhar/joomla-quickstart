@@ -62,6 +62,13 @@ class Standard implements SitemapInterface
     protected $collector;
 
     /**
+     * Limit in days for news sitemap items
+     *
+     * @var int
+     */
+    public $newsDateLimit = 2;
+
+    /**
      * The constructor
      *
      * @param int $id
@@ -74,7 +81,7 @@ class Standard implements SitemapInterface
         $row = OSMap\Factory::getTable('Sitemap');
         $row->load($id);
 
-        if (empty($row)) {
+        if (empty($row) || !$row->id) {
             throw new \Exception(\JText::_('COM_OSMAP_SITEMAP_NOT_FOUND'));
         }
 
@@ -116,22 +123,18 @@ class Standard implements SitemapInterface
     public function traverse($callback, $triggerEvents = true)
     {
         if ($triggerEvents) {
-            // Prepare the plugins
+            // Call the plugins, allowing to interact or override the collector
             \JPluginHelper::importPlugin('osmap');
 
-            // Call the plugins, allowing to interact or override the collector
-            $eventParams = array(
-                &$this,
-                &$callback
-            );
-            $results = \JEventDispatcher::getInstance()->trigger('osmapOnBeforeCollectItems', $eventParams);
+            $eventParams = array(&$this, &$callback);
+            $results     = \JEventDispatcher::getInstance()->trigger('osmapOnBeforeCollectItems', $eventParams);
 
             // A plugin asked to stop the traverse
             if (in_array(true, $results)) {
                 return;
             }
 
-            $results     = null;
+            $results = null;
         }
 
         // Fetch the sitemap items
@@ -164,6 +167,6 @@ class Standard implements SitemapInterface
     public function cleanup()
     {
         $this->collector = null;
-        $this->params = null;
+        $this->params    = null;
     }
 }

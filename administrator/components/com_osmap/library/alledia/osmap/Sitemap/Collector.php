@@ -126,7 +126,7 @@ class Collector
      *
      * @var Registry
      */
-    protected $params;
+    public $params;
 
     /**
      * The constructor
@@ -439,8 +439,11 @@ class Collector
     protected function checkDuplicatedURLToIgnore($item)
     {
         if (!empty($item->fullLink)) {
+            $container = OSMap\Factory::getContainer();
+
             // We need to make sure to have an URL free of hash chars
-            $hash = md5($item->fullLink);
+            $url  = $container->router->removeHashFromURL($item->fullLink);
+            $hash = md5($url);
 
             if (isset($this->urlHashList[$hash])) {
                 $item->duplicate = true;
@@ -588,8 +591,6 @@ class Collector
         if (is_numeric($step)) {
             $this->currentLevel += (int)$step;
         }
-
-        return true;
     }
 
     /**
