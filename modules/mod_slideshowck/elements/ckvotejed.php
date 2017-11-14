@@ -28,6 +28,7 @@ class JFormFieldCkvotejed extends JFormField {
 		$styles .= 'margin: 3px 0;';
 		$styles .= 'text-align: left;';
 		$styles .= 'text-decoration: none;';
+		$styles .= 'min-width: 400px;';
 
 		// Get the label text from the XML element, defaulting to the element name.
 		$text = $this->element['label'] ? (string) $this->element['label'] : (string) $this->element['name'];

@@ -46,6 +46,9 @@ $needJModal = false;
 		$startLink = '<a class="' . $linkClass .'" href="' . $link . '"' . $linkTarget . '>';
 		?>
 		<div <?php echo $datarel . $datatitle; ?>data-thumb="<?php echo $item->imgthumb; ?>" data-src="<?php echo $item->imgname; ?>" <?php if ($item->imglink && $linkposition == 'fullslide') echo 'data-link="' . $item->imglink . '" data-target="' . $imgtarget . '"'; echo $dataalignment . $datatime; ?>>
+			<?php if ($params->get('imageforseo', '0')) { ?>
+				<img src="<?php echo $item->imgname; ?>" style="display:none" alt="<?php echo $item->imgtitle ?>" />
+			<?php } ?>
 			<?php if ($item->imgvideo) { ?>
 				<iframe src="<?php echo $item->imgvideo; ?>" width="100%" height="100%" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>
 			<?php

@@ -1,5 +1,21 @@
 # Change Log
 
+## [0.6.0] - 2017-11-13
+
+## Changed
+- Upgrade Joomla version 3.7.3 to 3.8.2
+- Update Alledia Framework 1.5.10 to 1.6.0
+- Update Chronoform V5 5.0.14 to 5.0.16
+- Update JCE Editor 2.6.16 to 2.6.20
+- Update OSSystem 1.2.6 to 1.3.0
+- Update CK Slideshow 1.4.44 to 1.4.46
+
+## Added
+- None
+
+## Fixed
+- None
+
 ## [0.5.0] - 2017-07-06
 
 ## Changed

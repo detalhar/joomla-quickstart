@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <metafile version="3.7" client="administrator">
 	<name>Português do Brasil (pt-BR)</name>
-	<version>3.7.3.1</version>
-	<creationDate>Junho de 2017</creationDate>
+	<version>3.8.2.1</version>
+	<creationDate>Novembro de 2017</creationDate>
 	<author>Projeto Joomla!</author>
 	<authorEmail>pt-br@joomlacarioca.com.br</authorEmail>
 	<authorUrl>http://brasil.joomla.com</authorUrl>
@@ -17,7 +17,7 @@
 		<locale>pt_BR.utf8, pt_BR.UTF-8, pt_BR, brazil</locale>
 		<firstDay>0</firstDay>
 		<weekEnd>0,6</weekEnd>
-		<calendar>gregoriano</calendar>
+		<calendar>gregorian</calendar>
 	</metadata>
 	<params />
 </metafile>

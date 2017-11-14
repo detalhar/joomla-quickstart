@@ -37,6 +37,7 @@ class JFormFieldCkcheckpluginversion extends JFormField {
 		$styles .= 'margin: 3px 0;';
 		$styles .= 'text-align: left;';
 		$styles .= 'text-decoration: none;';
+		$styles .= 'min-width: 400px;';
 
 		$html = '';
 

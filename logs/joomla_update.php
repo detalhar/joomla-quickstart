@@ -118,3 +118,15 @@
 2017-07-06T12:24:48+00:00	INFO ::1	update	Deleting removed files and folders.
 2017-07-06T12:25:33+00:00	INFO ::1	update	Cleaning up after installation.
 2017-07-06T12:25:33+00:00	INFO ::1	update	Update to version 3.7.3 is complete.
+2017-11-13T20:47:09+00:00	INFO ::1	update	Atualização iniciada pelo usuário Super User (276). Versão antiga é 3.7.3.
+2017-11-13T20:47:16+00:00	INFO ::1	update	Baixando arquivo de atualização de https://s3-us-west-2.amazonaws.com/joomla-official-downloads/joomladownloads/joomla3/Joomla_3.8.2-Stable-Update_Package.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAIZ6S3Q3YQHG57ZRA%2F20171113%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20171113T204738Z&X-Amz-Expires=60&X-Amz-SignedHeaders=host&X-Amz-Signature=c56388820afa766ef3af4a6e3d6c2980d92c9b30cc90af64d253d2d447e116f4.
+2017-11-13T20:47:35+00:00	INFO ::1	update	Arquivo Joomla_3.8.2-Stable-Update_Package.zip baixado com sucesso.
+2017-11-13T20:47:36+00:00	INFO ::1	update	Iniciando a instalação da nova versão.
+2017-11-13T20:52:56+00:00	INFO ::1	update	Finalizando instalação.
+2017-11-13T20:52:57+00:00	INFO ::1	update	Executou a consulta do arquivo 3.7.4-2017-07-05. Texto da consulta: DELETE FROM `#__postinstall_messages` WHERE `title_key` = 'COM_CPANEL_MSG_PHPVER.
+2017-11-13T20:52:58+00:00	INFO ::1	update	Executou a consulta do arquivo 3.8.0-2017-07-28. Texto da consulta: ALTER TABLE `#__fields_groups` ADD COLUMN `params` TEXT  NOT NULL  AFTER `orderi.
+2017-11-13T20:52:59+00:00	INFO ::1	update	Executou a consulta do arquivo 3.8.0-2017-07-31. Texto da consulta: INSERT INTO `#__extensions` (`extension_id`, `package_id`, `name`, `type`, `elem.
+2017-11-13T20:52:59+00:00	INFO ::1	update	Executou a consulta do arquivo 3.8.2-2017-10-14. Texto da consulta: ALTER TABLE `#__content` ADD INDEX `idx_alias` (`alias`(191));.
+2017-11-13T20:52:59+00:00	INFO ::1	update	Excluindo arquivos e pastas removidas.
+2017-11-13T20:53:23+00:00	INFO ::1	update	Limpeza pós-instalação.
+2017-11-13T20:53:23+00:00	INFO ::1	update	A atualização para a versão 3.8.2 está completa.

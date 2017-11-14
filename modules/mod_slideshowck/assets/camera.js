@@ -2,6 +2,7 @@
 // Copyright (c) 2012 by Manuel Masia - www.pixedelic.com
 // Licensed under the MIT license: http://www.opensource.org/licenses/mit-license.php
 
+// v1.4.4	- 14/09/17 : fix issue when the instance is called multiple times on the same slideshow
 // v1.4.3	- 23/06/17 : remove the time stamp in image url (again)
 // v1.4.2	- 03/05/17 : add the alt tag on images
 // v1.4.1	- 22/02/17 : improve the load as container background feature to work in the same way as full page background
@@ -131,6 +132,12 @@ var Slideshowck = function (container, opts, callback) {
 		onStartTransition	: function() {  }	//this callback is invoked when the transition effect starts
 
     };
+
+	if (!(this instanceof Slideshowck)) return new Slideshowck(container, opts, callback);
+	var slideshowcks = window.slideshowcks || [];
+	if (slideshowcks.indexOf(container) > -1) return;
+	slideshowcks.push(container);
+	window.slideshowcks = slideshowcks;
 
 
 	function isMobile() {
